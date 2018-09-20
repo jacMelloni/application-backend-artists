@@ -97,4 +97,20 @@ class Artist
 
         return $this;
     }
+
+    public function getJsonRepresentation()
+    {
+        $json = [];
+
+        $json['token'] = $this->token;
+        $json['name']  = $this->name;
+
+        $json['albums'] = [];
+
+        foreach ($this->albums as $album) {
+            $json['albums'][] = $album->getJsonRepresentation();
+        }
+
+        return $json;
+    }
 }

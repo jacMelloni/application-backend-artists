@@ -72,4 +72,14 @@ class Song
 
         return $this;
     }
+
+    public function getJsonRepresentation()
+    {
+        $json = [];
+
+        $json['title']  = $this->title;
+        $json['length'] = intdiv($this->length, 60) . ":" . $this->length%60;
+
+        return $json;
+    }
 }

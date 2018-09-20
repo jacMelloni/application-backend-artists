@@ -149,4 +149,33 @@ class Album
 
         return $this;
     }
+
+    public function getJsonRepresentation($detailed = false)
+    {
+        $json = [];
+
+        $json['token'] = $this->token;
+        $json['title'] = $this->title;
+        $json['cover'] = $this->cover;
+
+        if ($detailed) {
+            $json['description'] = $this->description;
+
+            $artist = [];
+            $artist['token'] = $this->artist->getToken();
+            $artist['name']  = $this->artist->getName();
+
+            $json['artist'] = $artist;
+
+            $songs = [];
+
+            foreach ($this->songs as $song) {
+                $songs[] = $song->getJsonRepresentation();
+            }
+
+            $json['songs'] = $songs;
+        }
+
+        return $json;
+    }
 }
