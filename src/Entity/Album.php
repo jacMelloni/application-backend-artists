@@ -19,7 +19,7 @@ class Album
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=6)
+     * @ORM\Column(type="string", length=6, unique=true)
      */
     private $token;
 
@@ -34,7 +34,7 @@ class Album
     private $cover;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=2048, nullable=true)
      */
     private $description;
 
